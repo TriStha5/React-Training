@@ -57,6 +57,14 @@
       "age": 23,
       "address": "Dali",
       "email": "hari@gmail.com"
+    },
+    {
+      "id": "7e90",
+      "name": "Nam Nam updated",
+      "age": "32",
+      "email": "nam@gmail.com",
+      "role": "admin",
+      "address": "Kumaripati"
     }
   ]
 }

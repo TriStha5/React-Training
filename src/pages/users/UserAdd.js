@@ -9,6 +9,7 @@ const UserAdd = () => {
     {
       name: "",
       age: 0,
+      address: "",
       email: "",
       role: ""
     }
@@ -17,6 +18,7 @@ const UserAdd = () => {
   const [error, setError] = useState({
     name: "",
     age: "",
+    address: "",
     email: "",
     role: ""
   });
@@ -28,6 +30,10 @@ const UserAdd = () => {
   const handleAgeChange = (e) => {
     setUser({...user, age: e.target.value});
     setError({...error, age: ""});
+  }
+  const handleAddressChange = (e) => {
+    setUser({...user, address: e.target.value});
+    setError({...error, address: ""});
   } 
   const handleEmailChange = (e) => {
     setUser({...user, email: e.target.value});
@@ -38,6 +44,7 @@ const UserAdd = () => {
     const validationError = {
       name: "",
       age: "",
+      address: "",
       email: "",
       role: ""
     };
@@ -48,6 +55,10 @@ const UserAdd = () => {
       validationError.name = "Name is required";
       isValid = false;
     }
+    if (user.address === "") {
+        validationError.address = "Address is required";
+        isValid = false;
+      }
     if (user.email === "") {
       validationError.email = "Email is required";
       isValid = false;
@@ -70,7 +81,7 @@ const UserAdd = () => {
       axios.post(`http://localhost:4000/users`, user)
       .then(function (response) {
         // handle success
-        navigate('/admin/users');
+        navigate('/users');
       })
       .catch(function (error) {
         // handle error
@@ -80,7 +91,7 @@ const UserAdd = () => {
       axios.patch(`http://localhost:4000/users/${params.userId}`, user)
       .then(function (response) {
         // handle success
-        navigate('/admin/users');
+        navigate('/users');
       })
       .catch(function (error) {
         // handle error
@@ -114,6 +125,11 @@ const UserAdd = () => {
           <label>Age</label>
           <input type="number" value={user.age} onChange={handleAgeChange} />
           <div className="error">{error.age}</div>
+        </div>
+        <div>
+          <label>Address</label>
+          <input type="text" value={user.address} onChange={handleAddressChange} />
+          <div className="error">{error.address}</div>
         </div>
         <div>
           <label>Email</label>
