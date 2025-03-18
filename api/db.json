@@ -1,0 +1,62 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "uuid": "0fda2c77-9904-4665-ad0a-958dd62e868b",
+      "name": "Ram Karki",
+      "age": 55,
+      "address": "Jhapa",
+      "email": "ram@gmail.com",
+      "id": "9f49"
+    },
+    {
+      "uuid": "b04cff2c-4363-498b-abe2-f5f946a9ba49",
+      "name": "Sita Balami",
+      "age": 26,
+      "address": "Nakhipot",
+      "email": "sita@gmail.com",
+      "id": "9207"
+    },
+    {
+      "uuid": "3ddf4812-858d-4ec3-98bf-04848498a809",
+      "name": "Shyam Bar",
+      "age": 36,
+      "address": "Palpa",
+      "email": "shyam@gmail.com",
+      "id": "dac8"
+    },
+    {
+      "id": "b1bc",
+      "name": "Hari Karki updated",
+      "age": 23,
+      "address": "Dali",
+      "email": "hari@gmail.com"
+    }
+  ]
+}
