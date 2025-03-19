@@ -1,8 +1,7 @@
 import { NavLink, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { Space, Table } from "antd";
-import { Button } from 'antd';
-import axios from 'axios';
+import { Space, Table, Button, Card } from 'antd';
+ import { getUsers } from "../../utils/user.util";
 
 const Users = (props) => {
 
@@ -13,16 +12,10 @@ const Users = (props) => {
         navigate("/users/addUser");
     };
     useEffect(() => {
-        axios.get(`http://localhost:4000/users`)
-          .then(function (response) {
-            // handle success
-            setData(response.data);
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          });
-      }, []);
+      getUsers().then((response) => {
+        setData(response);
+      });
+    }, []);
     const columns = [
         // {
         //   title: 'ID',
@@ -64,21 +57,16 @@ const Users = (props) => {
       ];
     return (
         <div>
-            <h2>{props.title}</h2>
-            {/* <NavLink to="/admin/users/addUser"><button className="button" onClick={handleAddUser}>Add User</button></NavLink> */}
-            {/* <button className="button" onClick={handleAddUser}>Add User</button> */}
-            <br></br>
-            <Button type="primary" onClick={handleAddUser}>Add User</Button>
-            <br></br>
-            {/* <table style={{ width: "100%", borderCollapse: "collapse" }} name="users">
-                <thead>
-                    <UserHeader />
-                </thead>
-                <tbody>
-                    {data.map((item) => (<UsersRow row={item} />))}
-                </tbody>
-            </table> */}
-            <Table dataSource={data} columns={columns} />;
+            <Card
+              style={{
+                marginTop: 16,
+              }}
+              type="inner"
+              title={<h1>{props.title}</h1>}
+              extra={<Button type="primary" onClick={handleAddUser}>Add User</Button>}
+            >
+              <Table columns={columns} dataSource={data} />
+            </Card>
         </div>
     );
 }
