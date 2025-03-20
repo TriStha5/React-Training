@@ -8,7 +8,7 @@ const Layout =() => {
     const navigate = useNavigate();
     useEffect(() => {
         const isLogin = localStorage.getItem('is_Login');
-        if(isLogin !== '1'){
+        if(isLogin !== '0'){
             navigate('/login');
         }
     },[navigate]);

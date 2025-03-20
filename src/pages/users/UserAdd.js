@@ -140,6 +140,22 @@ const UserAdd = () => {
             <Option value="user">User</Option>
           </Select>
         </Form.Item>
+        <Form.Item
+          name="password"
+          label="Password"
+          rules={[
+            {
+              type: 'text',
+              message: 'The input is not valid Password!',
+            },
+            {
+              required: true,
+              message: 'Please input your Password!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit">
             Save

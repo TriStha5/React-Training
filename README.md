@@ -15,3 +15,5 @@
 - json servet npm
 - npm axios
 - useParams
+- Promise
+- React Context API

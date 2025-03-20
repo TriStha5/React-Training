@@ -1,120 +1,79 @@
-// import React, {useState} from "react";
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from "react-router";
-import { Button, Checkbox, Form, Input } from 'antd';
-
+import { Button, Form, Input, Card } from 'antd';
+import { checkLogin } from '../../utils/user.util';
+import { UserContext } from '../../context/user.context';
 
 const Login = () => {
-    const navigate = useNavigate();
-    const onFinish = (values) => {
-        if (values.username === 'admin' && values.password === 'admin'){
-            alert('Login Successful');
-            console.log('Success:', values);
-            localStorage.setItem('is_Login', 1);
-            navigate('/users');
-        }
-        else{
-            alert('Login Unsuccessful');
-            console.log('Unsuccess:', values);
-            localStorage.setItem('is_Login', 0);
-            
-        }
-    };
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-        localStorage.setItem('is_Login', 0);
-    };
-    // const navigate = useNavigate();
-    // const [user, setUser] = useState({
-    //     username: "",
-    //     password: ""
-    // });
-    // const [message, setMessage] = useState('');
-    // const handleUserNameChange = (e) => {
-    //     setUser({...user, username: e.target.value});
-    // }
-    // const handlePasswordChange = (e) => {
-    //     setUser({...user, password: e.target.value});
-    // }
-    // const handleLogin = () => {
-    //     if (user.username === 'admin' && user.password === 'admin'){
-    //         alert('Login Successful');
-    //         localStorage.setItem('is_Login', 1);
-    //         navigate('/users');
-    //     }
-    //     else{
-    //         localStorage.setItem('is_Login', 0);
-    //         setMessage('Invalid username or password');
-            
-    //     }
-    //     console.log(user);
-    // }
-    return(
-        <div className="login-body">
-            {/* <div className="login-container">
-            <h2>Login</h2>
-            <span style={{color: "red"}}>{message}</span>
-            <input type="text" id="username" placeholder="Username" value={user.username} onChange={handleUserNameChange} required />
-            <input type="password" id="password" placeholder="Password" value={user.password} onChange={handlePasswordChange} required />
-            <button onClick={handleLogin}>Login</button>
-            </div> */}
-            <Form
-                name="basic"
-                labelCol={{
-                    span: 8,
-                }}
-                wrapperCol={{
-                    span: 16,
-                }}
-                style={{
-                    maxWidth: 600,
-                }}
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-            >
-            <Form.Item
-                label="Username"
-                name="username"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your username!',
-                    },
-                ]}
-            >
-            <Input />
-            </Form.Item>
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const { _setUser } = useContext(UserContext);
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    checkLogin(values.username, values.password).then((data) => {
+      if (data === null) {
+        setMessage('Incorrect username or password');
+      } else {
+        setMessage('Login successful');
+        _setUser(data);
+        localStorage.setItem('is_login', 1);
+        localStorage.setItem('user', JSON.stringify(data));
+        navigate('/users');
+      }
+    });
+  };
 
-            <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your password!',
-                    },
-                ]}
-            >
-            <Input.Password />
-            </Form.Item>
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
 
-            <Form.Item name="remember" valuePropName="checked" label={null}>
-            <Checkbox>Remember me</Checkbox>
-            </Form.Item>
+  return (
+    <div>
+      <Card
+        style={{
+          marginTop: 16,
+          width: 500,
+          margin: '100px auto',
+        }}
+        type="inner"
+        title={<h1>Admin Login</h1>}
+      >
+        {message && <div>{message}</div>}
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: 'Please input your username!' }]}
+        >
+          <Input />
+        </Form.Item>
 
-            <Form.Item label={null}>
-            <Button type="primary" htmlType="submit">
-                Submit
-            </Button>
-            </Form.Item>
-            </Form>
-            
-        </div>
-    )
-}
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Login
+          </Button>
+        </Form.Item>
+      </Form>
+      </Card>
+    </div>
+  );
+};
 
 export default Login;

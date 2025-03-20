@@ -33,7 +33,8 @@
       "age": 55,
       "address": "Jhapa",
       "email": "ram@gmail.com",
-      "id": "9f49"
+      "id": "9f49",
+      "password": "12345"
     },
     {
       "uuid": "b04cff2c-4363-498b-abe2-f5f946a9ba49",
@@ -41,7 +42,8 @@
       "age": 26,
       "address": "Nakhipot",
       "email": "sita@gmail.com",
-      "id": "9207"
+      "id": "9207",
+      "password": "12345"
     },
     {
       "uuid": "3ddf4812-858d-4ec3-98bf-04848498a809",
@@ -49,14 +51,16 @@
       "age": 36,
       "address": "Palpa",
       "email": "shyam@gmail.com",
-      "id": "dac8"
+      "id": "dac8",
+      "password": "12345"
     },
     {
       "id": "b1bc",
       "name": "Hari Karki updated",
       "age": 23,
       "address": "Dali",
-      "email": "hari@gmail.com"
+      "email": "hari@gmail.com",
+      "password": "12345"
     },
     {
       "id": "7e90",
@@ -64,7 +68,8 @@
       "age": "32",
       "email": "nam@gmail.com",
       "role": "admin",
-      "address": "Kumaripati"
+      "address": "Kumaripati",
+      "password": "12345"
     }
   ]
 }

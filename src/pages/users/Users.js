@@ -2,6 +2,10 @@ import { NavLink, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { Space, Table, Button, Card } from 'antd';
  import { getUsers } from "../../utils/user.util";
+ import {
+  EditOutlined,
+  DeleteOutlined
+} from '@ant-design/icons';
 
 const Users = (props) => {
 
@@ -49,8 +53,8 @@ const Users = (props) => {
           key: 'action',
           render: (_, record) => (
             <Space size="middle">
-              <NavLink to={`/users/edit/${record.id}`}>Edit</NavLink>
-              <a>Delete</a>
+              <NavLink to={`/users/edit/${record.id}`}><EditOutlined /></NavLink>
+              <DeleteOutlined onClick={() => alert("hello")}/>
             </Space>
           ),
         },
